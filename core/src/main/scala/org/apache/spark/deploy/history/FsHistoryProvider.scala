@@ -659,8 +659,8 @@ private[history] class FsHistoryProvider(conf: SparkConf, clock: Clock)
       }
 
     val action = actionClass.getField("SAFEMODE_GET").get(null)
-    val method = dfs.getClass().getMethod("setSafeMode", action.getClass())
-    method.invoke(dfs, action).asInstanceOf[Boolean]
+    val method = dfs.getClass().getMethod("setSafeMode", action.getClass(), java.lang.Boolean.TYPE)
+    method.invoke(dfs, action, true: java.lang.Boolean).asInstanceOf[Boolean]
   }
 
 }
